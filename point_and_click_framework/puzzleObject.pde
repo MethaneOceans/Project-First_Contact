@@ -1,39 +1,22 @@
 // An object that resembles a puzzle so the scene can draw it.
 abstract class PuzzleObject {
-  private GameObject returnObject; // Finishing the puzzle returns a gameobject... can change for doing some other stuff
-  private GameObject removeObject
+  private Boolean locked;
   
+  // Abstract members because all puzzles work vastly different
   public abstract void draw();
   public abstract void mouseClicked();
-  public abstract void 
+  public abstract void update();
+  public abstract void onSolve(); // This should change a scene like adding an object to enter another scene or placing a collectible
+  
+  public void unlock() {
+    locked = false;
+  }
+  
+  // TODO: Implement standard ways to interact with the puzzle like buttons and dials
 }
 
+/*
 class WavePuzzle extends PuzzleObject {
-  private Dial ampWaveA;
-  private Dial ampWaveB;
-  
-  private float ampWaveC;
-  private float ampWaveD;
-  
-  
-  private Dial periodWaveA;
-  
-  public void draw() {
-    point(0, 0);
-  }
-  
-  public void mouseClicked() {
-    
-  }
-  
-  
-  
-  // Classes for functionality of puzzle
-  private class Dial {
-    private int xPos, yPos;
-    
-    public Dial(int xPos, int yPos) {
-      
-    }
-  }
+  // You need to implement all abstract members of PuzzleObject
 }
+*/
