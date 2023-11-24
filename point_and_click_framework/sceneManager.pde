@@ -2,14 +2,17 @@ import java.util.Stack;
 import java.util.HashMap;
 
 class SceneManager {
+  // Properties
   private HashMap<String, Scene> scenes;
   private Stack<Scene> scenesStack;
   
+  // Constructor
   public SceneManager() {
     scenes = new HashMap<String, Scene>();
     scenesStack = new Stack<Scene>();
   }
   
+  // Stack shenanigans
   public void addScene(Scene scene) {
     scenes.put(scene.getSceneName(), scene);
     if(scenesStack.size() == 0)

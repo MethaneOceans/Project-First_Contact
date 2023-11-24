@@ -1,13 +1,16 @@
 class Collectable {
+  // Properties
   private String name;
   private String gameObjectImageFile;
   //Could be expanded to add an amount, for example
   
+  // Constructor
   public Collectable(String name, String gameObjectImageFile) {
     this.name = name;
     this.gameObjectImageFile = gameObjectImageFile;
   }
   
+  // Get property
   public String getName() { 
     return name; 
   }
@@ -16,6 +19,7 @@ class Collectable {
     return gameObjectImageFile; 
   } 
   
+  // Override standard object methods
   @Override 
   public boolean equals(Object obj) { 
     if (obj == this) { return true; } 

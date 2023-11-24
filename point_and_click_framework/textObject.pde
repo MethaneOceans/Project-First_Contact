@@ -1,9 +1,11 @@
 class TextObject extends GameObject {
+  // Properties
   private String text;
   private boolean displayText;
   private float textWidth;
   private float textHeight;
   
+  // Constructor
   public TextObject(String identifier, int x, int y, int owidth, 
                     int oheight, String gameObjectImageFile, String text) {
     super(identifier, x, y, owidth, oheight, gameObjectImageFile);
@@ -12,6 +14,8 @@ class TextObject extends GameObject {
     calculateTextArea(); //Automatically calculates the area 
                          //necessary to display the entire text.
   }
+  
+  // Change the inherited draw function from GameObject
   @Override
   public void draw() {
     super.draw();
@@ -28,6 +32,7 @@ class TextObject extends GameObject {
     if(mouseIsHovering) { displayText = true; }
   }
   
+  // Does what it says
   public void calculateTextArea() {
     textWidth = textWidth(text);
     float remaining = textWidth - 300;

@@ -1,5 +1,5 @@
-int wwidth = 800;
-int wheight = 800;
+int wwidth = 1280;
+int wheight = 720;
 
 final SceneManager sceneManager = new SceneManager();
 final InventoryManager inventoryManager = new InventoryManager();

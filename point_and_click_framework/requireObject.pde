@@ -1,7 +1,9 @@
 class RequireObject extends TextObject {
+  // Properties
   private Collectable collectable;
   private GameObject replaceWith;
   
+  // Constructor
   public RequireObject(String identifier, int x, int y, int owidth, int oheight, 
                        String gameObjectImageFile, String text, 
                        Collectable collectable, GameObject replaceWith) {
@@ -10,6 +12,7 @@ class RequireObject extends TextObject {
     this.replaceWith = replaceWith;
   }
   
+  // mouseClicked gets re-educated
   @Override
   public void mouseClicked() {
     if(mouseIsHovering && inventoryManager.containsCollectable(collectable)) {
