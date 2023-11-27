@@ -1,16 +1,56 @@
 int wwidth = 1280;
 int wheight = 720;
+public PImage inventoryBackground;
 
 final SceneManager sceneManager = new SceneManager();
 final InventoryManager inventoryManager = new InventoryManager();
+
 
 void settings()
 {
   size(wwidth, wheight);
 }
 
-void setup()
-{
+void setup() {
+  //fullScreen();
+  inventoryBackground = loadImage("InventorySlot.png");
+  
+  Collectable key01 = new Collectable("key", "Key.png", true);
+  MoveToSceneObject openDoor = new MoveToSceneObject("goToScene02_scene01", 100, 200, 170, 300, "", "scene02");
+  
+  Scene scene01 = new Scene("scene01", "Background01.png");
+  MultiCollectableObject keyObj = new MultiCollectableObject("key01_scene01", 495, 358, 100, 45, key01, 0, "arrowLeft.png");
+  MultiCollectableObject keyObj2 = new MultiCollectableObject("key02_scene01", 395, 258, 100, 45, key01, 1);
+  LockedObject door01 = new LockedObject("requiresKey_scene01", 100, 200, 170, 300, "Door.png", "Locked", openDoor);
+
+  RequireMultiObjectFilled slotFilled01 = new RequireMultiObjectFilled("requireMultiSlot01_filled", 100, 100, 50, 50, "arrowUp.png");
+  RequireMultiObject slot01 = new RequireMultiObject("requireMultiSlot01", 100, 100, 50, 50, "arrowDown.png", key01, slotFilled01, 1);
+
+  RequireMultiObjectFilled slotFilled02 = new RequireMultiObjectFilled("requireMultiSlot02_filled", 200, 100, 50, 50, "arrowUp.png");
+  RequireMultiObject slot02 = new RequireMultiObject("requireMultiSlot02", 200, 100, 50, 50, "arrowDown.png", key01, slotFilled02, 0);
+
+  //println(slotPuzzle);
+  
+  Scene scene02 = new Scene("scene02", "Background02.png");
+  
+  scene01.addGameObject(door01);
+  scene01.addGameObject(keyObj);
+  scene01.addGameObject(keyObj2);
+  scene01.addGameObject(slot01);
+  //scene01.addGameObject(slotFilled01);
+  scene01.addGameObject(slot02);
+  //scene01.addGameObject(slotFilled02);
+
+  MultiPuzzleManager slotPuzzle = new MultiPuzzleManager(door01, slotFilled01, slotFilled02);
+  println(slotPuzzle);
+  scene01.addPuzzle(slotPuzzle);
+  
+  sceneManager.addScene(scene01);
+  sceneManager.addScene(scene02);
+  
+  
+  
+/* 
   Collectable apple = new Collectable("apple", "back04_apple.png");
   MoveToSceneObject object7 = new MoveToSceneObject("goToScene04_scene01", 206, 461, 50, 50, "arrowUp.png", "scene04");
   
@@ -59,20 +99,27 @@ void setup()
   sceneManager.addScene(scene02);
   sceneManager.addScene(scene03);
   sceneManager.addScene(scene04);
-  sceneManager.addScene(scene05);
+  sceneManager.addScene(scene05);*/
 }
 
 void draw()
 {
+  background(0);
   sceneManager.getCurrentScene().draw(wwidth, wheight);
   sceneManager.getCurrentScene().updateScene();
   inventoryManager.clearMarkedForDeathCollectables();
+  inventoryManager.draw();
+  //slotPuzzle.update();
 }
 
 void mouseMoved() {
   sceneManager.getCurrentScene().mouseMoved();
+  inventoryManager.mouseMoved();
 }
 
 void mouseClicked() {
   sceneManager.getCurrentScene().mouseClicked();
+  //if(mouseY >= 620 && mouseY <= 715) {
+  inventoryManager.mouseClicked();
+  //}
 }

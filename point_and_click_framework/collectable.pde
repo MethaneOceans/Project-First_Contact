@@ -1,25 +1,67 @@
 class Collectable {
-  // Properties
   private String name;
-  private String gameObjectImageFile;
+  private String inventoryIcon;
+  private PImage icon;
+  private boolean hasIcon;
+  private int index = -1;
+  private boolean isMulti;
   //Could be expanded to add an amount, for example
   
-  // Constructor
-  public Collectable(String name, String gameObjectImageFile) {
+  public Collectable(String name, String inventoryIcon) {
+    this(name, inventoryIcon, false);
+  }
+
+  public Collectable(String name, String inventoryIcon, boolean pIsMulti) {
     this.name = name;
-    this.gameObjectImageFile = gameObjectImageFile;
+    this.inventoryIcon = inventoryIcon;
+    this.isMulti = pIsMulti;
+    hasIcon = !inventoryIcon.equals("");
+    if(hasIcon) {
+      this.icon = loadImage(inventoryIcon);
+    }
+    //I know the image gets loaded twice. I shouldn't be expected to optimize 3KB of memory in a game this small
   }
   
-  // Get property
+  /*public Collectable(String name, String inventoryIcon, int index) {
+    this(name, inventoryIcon);
+    this.index = index;
+  }*/
+  
+  /*public Boolean isMulti() {
+    println("checking multi");
+    if(index != -1) {
+      println("is multi");
+      return true;
+    } else {
+      println("is not multi; " + index);
+      return false;
+    }
+  }*/
+  
+  public Boolean hasIcon() {
+    return hasIcon;
+  }
+  
+  public PImage getIcon() {
+    return icon;
+  }
+  
   public String getName() { 
     return name; 
   }
   
+  public String getInventoryIcon() {
+    return inventoryIcon;
+  }
+  
   public String getGameObjectImageFile() { 
-    return gameObjectImageFile; 
+    return inventoryIcon; 
   } 
   
-  // Override standard object methods
+  public void setGameObjectImageFile(String imageFile) {
+    inventoryIcon = imageFile;
+  }
+  
   @Override 
   public boolean equals(Object obj) { 
     if (obj == this) { return true; } 
