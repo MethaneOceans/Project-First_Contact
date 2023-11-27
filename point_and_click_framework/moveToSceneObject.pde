@@ -1,9 +1,8 @@
 class MoveToSceneObject extends GameObject {
-  // Properties
+  
   private String nextSceneIdentifier;
   private boolean moveBack;
   
-  // WHAT????
   public MoveToSceneObject(String identifier, int x, int y, int owidth, int oheight, boolean moveBack) {
     this(identifier, x, y, owidth, oheight, "", moveBack);
   }
@@ -23,7 +22,6 @@ class MoveToSceneObject extends GameObject {
     this.moveBack = false;
   }
   
-  // Mouseclicked did something this class didn't want
   @Override
   public void mouseClicked() {
     if(mouseIsHovering) {

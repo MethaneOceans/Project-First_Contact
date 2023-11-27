@@ -1,5 +1,4 @@
 class GameObject {
-  // Properties
   protected int x;
   protected int y;
   protected int owidth;
@@ -11,12 +10,10 @@ class GameObject {
   private PImage gameObjectImageHover;
   protected boolean mouseIsHovering;
   
-  // What the constructor doin'?
   public GameObject(String identifier, int x, int y, int owidth, int oheight) {
     this(identifier, x, y, owidth, oheight, "");
   }
   
-  // Constructor
   public GameObject(String identifier, int x, int y, int owidth, int oheight, String gameObjectImageFile) {
     this.identifier = identifier;
     this.x = x;
@@ -31,13 +28,15 @@ class GameObject {
     mouseIsHovering = false;
   }
   
-  // Ew?
+  public void setAltImage (String gameObjectFile) {
+    this.gameObjectImage = loadImage(gameObjectFile);
+  }
+  
   public void setHoverImage(String gameObjectImageHoverFile) {
     this.gameObjectImageHover = loadImage(gameObjectImageHoverFile);
     hasHoverImage = true;
   }
   
-  // Draw
   public void draw() {
     if(hasImage) {
       if(mouseIsHovering && hasHoverImage) {
@@ -48,7 +47,6 @@ class GameObject {
     }
   }
   
-  // Input management
   public void mouseMoved() {
     mouseIsHovering = false;
     if(mouseX >= x && mouseX <= x + owidth &&
@@ -63,7 +61,6 @@ class GameObject {
     return this.identifier;
   }
   
-  // Big brain stuff
   @Override 
   public boolean equals(Object obj) { 
     if (obj == this) { return true; } 
