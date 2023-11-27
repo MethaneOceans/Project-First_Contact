@@ -2,6 +2,7 @@ int wwidth = 1280;
 int wheight = 720;
 public PImage inventoryBackground;
 
+
 final SceneManager sceneManager = new SceneManager();
 final InventoryManager inventoryManager = new InventoryManager();
 
