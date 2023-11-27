@@ -11,7 +11,7 @@ class GameObject {
   private PImage gameObjectImageHover;
   protected boolean mouseIsHovering;
   
-  // What the constructor doin'?
+  // Calls the main constructor without supplying an image
   public GameObject(String identifier, int x, int y, int owidth, int oheight) {
     this(identifier, x, y, owidth, oheight, "");
   }
@@ -31,7 +31,7 @@ class GameObject {
     mouseIsHovering = false;
   }
   
-  // Ew?
+  // Hoverimage for when mouse is over object
   public void setHoverImage(String gameObjectImageHoverFile) {
     this.gameObjectImageHover = loadImage(gameObjectImageHoverFile);
     hasHoverImage = true;

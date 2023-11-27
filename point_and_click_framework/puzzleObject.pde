@@ -1,22 +1,14 @@
 // An object that resembles a puzzle so the scene can draw it.
-abstract class PuzzleObject {
-  private Boolean locked;
+abstract class PuzzleObject extends GameObject {
+  private Boolean solved = false;
   
-  // Abstract members because all puzzles work vastly different
-  public abstract void draw();
-  public abstract void mouseClicked();
-  public abstract void update();
-  public abstract void onSolve(); // This should change a scene like adding an object to enter another scene or placing a collectible
-  
-  public void unlock() {
-    locked = false;
+  public PuzzleObject(String identifier, int x, int y, int owidth, int oheight) {
+    super(identifier, x, y, owidth, oheight);
   }
   
-  // TODO: Implement standard ways to interact with the puzzle like buttons and dials
+  abstract public void draw();
+  abstract public void mouseMoved();
+  abstract public void mouseClicked();
+  abstract public void onSolve();
+  
 }
-
-/*
-class WavePuzzle extends PuzzleObject {
-  // You need to implement all abstract members of PuzzleObject
-}
-*/
